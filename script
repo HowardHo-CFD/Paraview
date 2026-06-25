@@ -1,0 +1,8 @@
+# Load modules to the interactive node
+module load StdEnv/2020 gcc/9.3.0 openmpi/4.0.3 paraview-offscreen/5.11.0
+
+# For paraview-offscreen (switch -np to 1 if working with reconstructed data)
+mpiexec -np 192 pvserver 
+
+# Execute a python script to extract data without launching paraview locally
+srun --ntasks=192 pvbatch extract-U-script-v3.py
